@@ -29,7 +29,6 @@
   });
 
 
-
   microgear.on('message', function(topic,data) {
     if(data=="ON"){
           document.getElementById("Status").innerHTML =  "สถานะของการเช็คชื่อ : Start Class";
