@@ -11,13 +11,8 @@ class Webble extends Model
     
     protected $fillable = [
         'id',
-        'subject_id',
-        'year',
-        'term',
-        'day',
-        'time_start',
-        'time_end',
-        'room',
+        'tb_subject_id',
+        
     
     ];
 }

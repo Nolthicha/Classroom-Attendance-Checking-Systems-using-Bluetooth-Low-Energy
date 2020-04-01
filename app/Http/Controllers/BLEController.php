@@ -32,12 +32,12 @@ class BLEController extends Controller
     {
 
         
-        $data=$request->all();
+        /*$data=$request->all();
         //$lastid=StartStopEsp32::create($data)->type;
         if($request->tb_subject_id == null ){
             //return redirect('/course/ble')->with('status','กรุณาเลือกวิชาที่จะเริ่มเช็คชื่อ'); 
             return redirect()->back()->with('status','กรุณาเลือกวิชาที่จะเริ่มเช็คชื่อ'); 
-        }
+        }*/
 
 
         if(count($request->tb_subject_id) > 0)
@@ -51,11 +51,13 @@ class BLEController extends Controller
                 );
                 Webble::insert($data2);
             } 
-            return redirect()->back();
+
+            
+            //return redirect()->back();
              //return redirect()->back();
         }
-        else if(count($request->tb_subject_id) < 0){
-            return redirect()->back();
+        else if(count($request->tb_subject_id) <= 0){
+            return redirect()->back()->with('status','กรุณาเลือกวิชาที่จะเริ่มเช็คชื่อ'); 
             //return redirect('/course/ble');
 
         }

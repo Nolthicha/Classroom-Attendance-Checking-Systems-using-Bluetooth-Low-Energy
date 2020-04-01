@@ -28,18 +28,12 @@
     alias : ALIAS
   });
 
-  var tem = 2;
+
 
   microgear.on('message', function(topic,data) {
-    
-    if(data=="ON" || tem==1){
-      tem = 1;
-        if(tem==1){
+    if(data=="ON"){
           document.getElementById("Status").innerHTML =  "สถานะของการเช็คชื่อ : Start Class";
-        }
-
     }else if(data=="OFF"){
-      tem = 0;
       document.getElementById("Status").innerHTML =  "สถานะของการเช็คชื่อ : Stop Class"; 
     }
 
@@ -72,9 +66,11 @@
 
 <script>
 
-$(document).ready(function() {            
+$(document).ready(function() { 
+  $("#msg").hide();  
+  $("#success").hide();          
             $("#btn").click(function() {
-                        
+              
                     var formData = $('#store').serialize();
  
                     $.ajax({
@@ -87,9 +83,18 @@ $(document).ready(function() {
 						},
                         
                         success: function (res) {
+                          $("#success").fadeIn().delay(5000).fadeOut();
+                          $("#success").html("เริ่มการเช็คชื่อ");
+                          $("#success").fadeOut(2000);
                             //$("#result").html(res);                         
                         },
                         error: function (e) {
+                          microgear.chat(thing1,"OFF");
+                          $("#msg").fadeIn().delay(3000).fadeOut();
+                          $("#msg").html("กรุณาเลือกวิชาที่ต้องการเช็คชื่อ");
+                          $("#msg").fadeOut(2000);
+
+
                             //$("#result").text("Failed to save");
                         }
                     });
@@ -122,12 +127,15 @@ $(document).ready(function() {
               
 
                 </div>
+                <p id="msg" class="alert alert-danger"></p>
+                <p id="success" class="alert alert-success"></p>
 
-                @if (session('status'))
+
+                <!--@if (session('status'))
                         <div class="alert alert-danger" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
+                    @endif-->
                     
               <!-- /.card-header -->
               <div class="card-body p-0">
@@ -202,4 +210,3 @@ $(document).ready(function() {
 </div>
   
 @endsection
-
