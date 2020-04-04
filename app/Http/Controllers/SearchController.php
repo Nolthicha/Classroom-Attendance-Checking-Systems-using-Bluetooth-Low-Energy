@@ -76,7 +76,7 @@ class SearchController extends Controller
       } else {
         $output = '
        <tr>
-        <td align="center" colspan="5">No Data Found</td>
+        <td align="center" colspan="5">ไม่พบข้อมูล</td>
        </tr>
        ';
       }
